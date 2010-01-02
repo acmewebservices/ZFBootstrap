@@ -10,6 +10,14 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction() {
 		$conn1 = Doctrine_Manager::getInstance()->getConnection('one');
+		        $this->view->name = "Frank Sinatra";
+		
+		        $this->view->fruits = array(
+		            "apples",
+		            "bananas",
+		            "papayas",
+		            "peaches"
+		        );
     }
 
 

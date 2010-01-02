@@ -2,6 +2,10 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 
+	public function _initTimeZone(){
+		date_default_timezone_set('Europe/Brussels');
+	}
+
 	/**
      * Autoload stuff from the default module (which is not in a `modules` subfolder in this project)
      * (Api_, Form_, Model_, Model_DbTable, Plugin_)
@@ -11,6 +15,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $moduleLoader = new Zend_Application_Module_Autoloader(array(
             'namespace' => '',
             'basePath'  => APPLICATION_PATH));
+            
+        $autoloader = Zend_Loader_Autoloader::getInstance();
+        $autoloader->registerNamespace('Rodeveer_');
 
         return $moduleLoader;
     }
@@ -59,6 +66,17 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $frontController = $this->getResource('frontController');
         $frontController->registerPlugin($debug);
     }
-
+    
+    public function _initSmarty(){
+	    require_once( 'Smarty/Smarty.class.php');	    
+	    $smarty_config = $this->getOption('smarty');	    
+		$view = new Rodeveer_View_Smarty(APPLICATION_PATH . '/views/templates/', $smarty_config);
+		$viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
+		$viewRenderer->setView($view)
+		             ->setViewBasePathSpec($view->getEngine()->template_dir)
+		             ->setViewScriptPathSpec(':controller/:action.:suffix')
+		             ->setViewScriptPathNoControllerSpec(':action.:suffix')
+		             ->setViewSuffix('tpl');    
+    }
 
 }
