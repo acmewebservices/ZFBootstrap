@@ -1,0 +1,8 @@
+@grid
+{
+    column-width:60;
+    column-count:12;
+    left-gutter-width:10;
+    right-gutter-width:10;
+    baseline:18;
+}

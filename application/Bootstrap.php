@@ -76,7 +76,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 		             ->setViewBasePathSpec($view->getEngine()->template_dir)
 		             ->setViewScriptPathSpec(':controller/:action.:suffix')
 		             ->setViewScriptPathNoControllerSpec(':action.:suffix')
-		             ->setViewSuffix('tpl');    
+		             ->setViewSuffix('phtml');    
     }
 
 }
