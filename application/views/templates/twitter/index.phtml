@@ -1,0 +1,9 @@
+{include file="header.phtml"}
+
+<ul>
+	{foreach from=$statuslist item=status}
+	    <li>{$status->text|twitterparse}<span>{$status->created_at}</span></li>
+	{/foreach}
+</ul>
+
+{include file="footer.phtml"}
