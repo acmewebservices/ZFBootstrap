@@ -1,8 +1,33 @@
+@constants 
+{
+	font-family-serif: Palatino, "Palatino Linotype", Georgia, Times, "Times New Roman", serif;
+	font-family-sans: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-family-mono: "andale mono", "lucida console", monospace
+} 
+
+@include '~/modules/reset';
+@include '~/modules/typography';
+@include '~/modules/forms';
+
+
 @grid
 {
-    column-width:60;
-    column-count:12;
+    column-width:30;
+    column-count:24;
     left-gutter-width:10;
     right-gutter-width:10;
     baseline:18;
 }
+
+.container 
+{ 
+	+container; 
+}
+
++grid-classes;
+
+.header 		{ +columns(24); +first; +last}
+.content 		{ +columns(18); }
+.aside-left 	{ +columns(3); +first }
+.aside-right 	{ +columns(3); +last}
+.footer 		{ +columns(24); +first; +last }
