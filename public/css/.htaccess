@@ -1,0 +1,12 @@
+SetOutputFilter DEFLATE
+ExpiresActive on
+ExpiresDefault "access plus 10 years"
+
+RewriteEngine	on
+
+RewriteCond 	%{REQUEST_URI}			\.css
+RewriteRule 	^(.+)/([^/]+)/?$ 		scaffold/index.php?request=%{REQUEST_URI}&output=$2&%{QUERY_STRING}
+	
+RewriteCond		%{REQUEST_FILENAME}		-f
+RewriteCond 	%{REQUEST_URI}			\.css$
+RewriteRule 	^(.+)$ 					scaffold/index.php?request=%{REQUEST_URI}&%{QUERY_STRING}
